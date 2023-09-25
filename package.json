@@ -1,0 +1,71 @@
+{
+  "name": "grafana-dashboards",
+  "version": "0.0.1",
+  "description": "Create and manage Grafana Dashboards as code.",
+  "repository": "ddias-dev/grafana-dashboards",
+  "bugs": "https://github.com/ddias-dev/grafana-dashboards/issues",
+  "homepage": "https://github.com/ddias-dev/grafana-dashboards#readme",
+  "author": {
+    "name": "Diego Dias",
+    "email": "ddias.dev@gmail.com"
+  },
+  "bin": "bin/app.js",
+  "scripts": {
+    "clean-packages": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +",
+    "dashboard-gen": "cd ./dashboards && mkdir -p bin && jb install && jsonnet index.libsonnet -J vendor -m bin",
+    "deploy": "npm run dashboard-gen && cdk deploy $1 --require-approval never",
+    "deploy-dev": "npm run deploy -- grafana-dashboards-development",
+    "deploy-prod": "npm run deploy -- grafana-dashboards-production",
+    "format": "prettier --write .",
+    "test": "npm run dashboard-gen && eslint . && jest"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@jest/types": "^29.6.3",
+    "@semantic-release/git": "^10.0.1",
+    "@types/aws-lambda": "^8.10.122",
+    "@types/jest": "^29.5.5",
+    "@types/lodash": "^4.14.199",
+    "@types/node": "^20.6.5",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "aws-cdk": "^2.97.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0-alpha.2",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "semantic-release": "^22.0.5",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cloudformation": "^3.418.0",
+    "@aws-sdk/client-grafana": "^3.418.0",
+    "@aws-sdk/client-s3": "^3.418.0",
+    "aws-cdk-lib": "^2.97.0",
+    "axios": "^1.5.0",
+    "constructs": "^10.2.70",
+    "lodash": "^4.17.21"
+  },
+  "private": true,
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  },
+  "engines": {
+    "node": "18"
+  }
+}

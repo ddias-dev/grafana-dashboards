@@ -1,0 +1,9 @@
+node_modules
+dist
+cdk.out
+.husky
+
+# jsonnet-bundler
+dashboards/**/jsonnetfile.lock.json
+dashboards/**/vendor/
+dashboards/**/bin/

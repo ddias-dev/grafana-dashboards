@@ -1,0 +1,13 @@
+!jest.config.js
+*.d.ts
+node_modules
+dist
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# jsonnet-bundler
+dashboards/**/jsonnetfile.lock.json
+dashboards/**/vendor/
+dashboards/**/bin/

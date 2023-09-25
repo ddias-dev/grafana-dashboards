@@ -1,0 +1,12 @@
+{
+  "cSpell.words": ["commitlint", "ddias", "Grafonnet", "Jsonnet", "templating"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "[jsonnet]": {
+    "editor.defaultFormatter": "Grafana.vscode-jsonnet"
+  }
+}
